@@ -1,11 +1,12 @@
 const dialogflow = require("dialogflow");
 const config = require("./config");
 
+//constante con credenciales de google que vienen de config.js
 const credentials = {
   client_email: config.GOOGLE_CLIENT_EMAIL,
   private_key: config.GOOGLE_PRIVATE_KEY,
 };
-
+//constante de sesión de cliente con el google projhect id que viene de config.js
 const sessionClient = new dialogflow.SessionsClient({
   projectId: config.GOOGLE_PROJECT_ID,
   credentials,
@@ -13,8 +14,9 @@ const sessionClient = new dialogflow.SessionsClient({
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
- * @param {string} projectId The project to be used
+ * @param {string} projectId //project Id se pasa a string
  */
+//método sentToDialogflow que configura la petición y la respuesta de los intents
 async function sendToDialogFlow(msg, session, source, params) {
   let textToDialogFlow = msg;
   try {
@@ -63,7 +65,7 @@ async function sendToDialogFlow(msg, session, source, params) {
     console.log(e);
   }
 }
-
+//se exporta la función para que pueda usarse en toda la repo
 module.exports = {
   sendToDialogFlow,
 };

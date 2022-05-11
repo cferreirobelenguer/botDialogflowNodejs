@@ -1,3 +1,4 @@
+//Se exportan las dependencias
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -17,13 +18,15 @@ app.use(
     limit: "20mb",
   })
 );
-
+//wehbook mesenger/facebook verify token que se obtiene de config.js
 app.use("/messenger", require("./Facebook/facebookBot"));
 
+//petición get retorna que bot funciona
 app.get("/", (req, res) => {
-  return res.send("Chatbot Funcionando 🤖🤖🤖");
+  return res.send("Chatbot Funcionando");
 });
 
+//puerto en escucha
 app.listen(port, () => {
   console.log(`Escuchando peticiones en el puerto ${port}`);
 });
